@@ -6,8 +6,8 @@ namespace BankAccount.Domain.Transactions
 {
     public class Pay : Transaction
     {
-        public Pay(double amount, DateTime movDate)
-            : base(amount, movDate) { }
+        public Pay(double amount, DateTime movDate, Account account, Bank bank)
+            : base(amount, movDate, account, bank) { }
 
         public int Execute()
         {

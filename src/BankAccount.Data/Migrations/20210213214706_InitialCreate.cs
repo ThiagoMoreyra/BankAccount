@@ -78,6 +78,8 @@ namespace BankAccount.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    IdAccount = table.Column<Guid>(nullable: false),
+                    IdOwner = table.Column<Guid>(nullable: false),
                     TransactionType = table.Column<int>(nullable: false),
                     TransactionDate = table.Column<DateTime>(type: "date", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal", nullable: false),
@@ -110,18 +112,11 @@ namespace BankAccount.Data.Migrations
                     IdBank = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal", nullable: false),
                     MovDate = table.Column<DateTime>(type: "date", nullable: false),
-                    BankId = table.Column<Guid>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false)
+                    BankId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_tbTransaction", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_tbTransaction_tbAccount_Id",
-                        column: x => x.Id,
-                        principalTable: "tbAccount",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_tbTransaction_tbBank_BankId",
                         column: x => x.BankId,
@@ -129,7 +124,7 @@ namespace BankAccount.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_tbTransaction_tbAccount_Id1",
+                        name: "FK_tbTransaction_tbAccount_Id",
                         column: x => x.Id,
                         principalTable: "tbAccount",
                         principalColumn: "Id",

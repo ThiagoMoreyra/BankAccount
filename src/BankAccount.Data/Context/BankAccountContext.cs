@@ -18,7 +18,7 @@ namespace BankAccount.Data.Context
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Owner> Owners { get; set; }
-        public DbSet<Withdrawal> Withdrawals { get; set; }
+        public DbSet<BankStatement> BankStatements { get; set; }
         public DbSet<Transaction> Transactions { get; set; }       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -10,13 +10,13 @@ namespace BankAccount.Domain.Banks
     public class Bank : Entity
     {
         protected Bank() { }
-        public Bank(int bankCode, Account account, string companyName)
+        public Bank(int bankCode, string companyName)
         {
             BankCode = bankCode;
             CompanyName = companyName;
             this.AuthenticatedUser = true;
             Accounts = new List<Account>();
-            Accounts.Add(account);
+            
 
             AddNotifications(new Contract()
                             .Requires()

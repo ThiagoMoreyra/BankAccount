@@ -20,14 +20,15 @@ namespace BankAccount.Tests.Transactions
             var cpf = new Cpf("524.705.290-00");
             var address = new Address("Rua x", "123", "x", "x", "x", "x", "x");
             var owner = new Owner(name, new DateTime(1900, 11, 10), cpf, address);
-            account = new Account(12345, 123.0, owner);
-            bank = new Bank(123, account, "Bradesco");
+            account = new Account(12345, 123.0);
+            bank = new Bank(123, "Bradesco");
+            bank.Accounts.Add(account);
         }
 
         [Fact]
         public void MakeWithdraw_Return_Withdraw_Realized()
         {
-            withdrawal = new Withdrawal(12.0, DateTime.Now);
+            withdrawal = new Withdrawal(12.0, DateTime.Now, account, bank);
 
             int result = withdrawal.Execute();
 
@@ -38,7 +39,7 @@ namespace BankAccount.Tests.Transactions
         public void MakeWithdraw_Return_Withdraw_Not_Realized()
         {
 
-            withdrawal = new Withdrawal(500.0, DateTime.Now);
+            withdrawal = new Withdrawal(500.0, DateTime.Now, account, bank);
 
             int result = withdrawal.Execute();
 
@@ -49,9 +50,9 @@ namespace BankAccount.Tests.Transactions
         public void MakeWithdraw_Return_AvaliableBalance_Valid()
         {
 
-            withdrawal = new Withdrawal(20.0, DateTime.Now);
+            withdrawal = new Withdrawal(20.0, DateTime.Now, account, bank);
 
-            int result = withdrawal.Execute();
+            var result = withdrawal.Execute();
 
             Assert.Equal(103, bank.GetAvaliableBalance(account.Id));
         }
@@ -60,9 +61,9 @@ namespace BankAccount.Tests.Transactions
         public void MakeDeposit_Return_AvaliableBalance_Valid()
         {
 
-            deposit = new Deposit(20.0, DateTime.Now);
+            deposit = new Deposit(20.0, DateTime.Now, account, bank);
 
-            int result = deposit.Execute();
+            var result = deposit.Execute();
 
             Assert.Equal(143, bank.GetAvaliableBalance(account.Id));
         }

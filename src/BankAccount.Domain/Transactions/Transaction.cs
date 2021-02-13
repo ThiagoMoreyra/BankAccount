@@ -9,14 +9,16 @@ namespace BankAccount.Domain.Transactions
     public class Transaction : Entity
     {
         protected Transaction() { }
-        protected Transaction(double amount, DateTime movDate)
+        protected Transaction(double amount, DateTime movDate, Account account, Bank bank)
         {
             MovDate = movDate;
             Amount = amount;
-
+            Account = account;
+            Bank = bank;
+            
             AddNotifications(new Contract()
                             .Requires()
-                            .ValidateIfLessThan(this.Amount, 0, "The Amount filed is invalid"));                            
+                            .ValidateIfLessThan(this.Amount, 0, "The Amount filed is invalid"));
         }
 
         public Guid IdAccount { get; set; }

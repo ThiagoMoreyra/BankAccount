@@ -1,6 +1,20 @@
-﻿namespace BankAccount.Domain.BankStatements
+﻿using BankAccount.Domain.Accounts;
+using System.Collections.Generic;
+
+namespace BankAccount.Domain.BankStatements
 {
-    public class BankStatementService
+    public class BankStatementService : IBankStatementService
     {
+        private readonly IBankStatementRepository _bankStatementRepository;
+
+        public BankStatementService(IBankStatementRepository bankStatementRepository)
+        {
+            _bankStatementRepository = bankStatementRepository;
+        }
+
+        public void RegisterBankStatement(BankStatement bankStatement)
+        {
+            _bankStatementRepository.Add(bankStatement);
+        }        
     }
 }

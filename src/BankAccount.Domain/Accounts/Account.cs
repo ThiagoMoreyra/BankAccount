@@ -10,21 +10,20 @@ using System.Collections.Generic;
 
 namespace BankAccount.Domain.Accounts
 {
-    public class Account: Entity
+    public class Account : Entity
     {
         protected Account() { }
-        public Account(int number, double balance, Owner owner)
+        public Account(int number, double balance)
         {
-            Number = number;            
-            Balance = balance;
-            Owner = owner;
+            Number = number;
+            Balance = balance;            
             CreationDate = DateTime.Now;
 
             AddNotifications(new Contract()
                             .Requires()
                             .ValidateMinMax(this.BankCode, 5, 10, "The BankCode filed is invalid")
-                            .ValidateIfLessThan(this.BankCode, 4, "The BankCode filed is invalid")                          
-                            .ValidateIfLessThan(this.Number, 0, "The Number filed is invalid"));                            
+                            .ValidateIfLessThan(this.BankCode, 4, "The BankCode filed is invalid")
+                            .ValidateIfLessThan(this.Number, 0, "The Number filed is invalid"));
         }
 
         public Guid IdBank { get; set; }
@@ -35,8 +34,7 @@ namespace BankAccount.Domain.Accounts
         public DateTime CreationDate { get; private set; }
         public Owner Owner { get; private set; }
         public Bank Bank { get; set; }
-        public List<Deposit> Deposits { get; set; }        
-        public List<Withdrawal> Withdrawals { get; set; }
+        public List<Transaction> Transactions { get; set; }
 
         public int MakeDeposit(double amount)
         {
@@ -67,7 +65,7 @@ namespace BankAccount.Domain.Accounts
         public decimal GetAvaliableDailyProfitBalance(double fee)
         {
             var totalDays = CreationDate.Date.Subtract(DateTime.Now.Date).TotalDays;
-            return CalculationFutureValue.GetDailyProfit(fee,this.Balance, totalDays);
+            return CalculationFutureValue.GetDailyProfit(fee, this.Balance, totalDays);
         }
     }
 }
