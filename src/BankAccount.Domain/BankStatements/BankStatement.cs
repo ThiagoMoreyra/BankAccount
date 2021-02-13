@@ -2,6 +2,7 @@
 using BankAccount.Domain.BankStatements.Enum;
 using BankAccount.Domain.Clients;
 using BankAccount.Domain.Shared;
+using BankAccount.Domain.Shared.Validations;
 using System;
 
 namespace BankAccount.Domain.BankStatements
@@ -16,6 +17,10 @@ namespace BankAccount.Domain.BankStatements
             Amount = amount;
             Account = account;
             Owner = owner;
+
+            AddNotifications(new Contract()
+                            .Requires()
+                            .ValidateMinMax(this.Amount, 5, 10, "The BankCode field is invalid"));
         }
 
         public TransactionType TransactionType { get; private set; }

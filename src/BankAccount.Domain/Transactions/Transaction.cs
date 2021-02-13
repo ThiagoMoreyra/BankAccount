@@ -1,6 +1,7 @@
 ﻿using BankAccount.Domain.Accounts;
 using BankAccount.Domain.Banks;
 using BankAccount.Domain.Shared;
+using BankAccount.Domain.Shared.Validations;
 using System;
 
 namespace BankAccount.Domain.Transactions
@@ -12,6 +13,10 @@ namespace BankAccount.Domain.Transactions
         {
             MovDate = movDate;
             Amount = amount;
+
+            AddNotifications(new Contract()
+                            .Requires()
+                            .ValidateIfLessThan(this.Amount, 0, "The Amount filed is invalid"));                            
         }
 
         public Guid IdAccount { get; set; }

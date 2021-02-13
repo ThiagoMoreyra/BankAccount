@@ -1,5 +1,6 @@
 ﻿using BankAccount.Domain.Accounts;
 using BankAccount.Domain.Shared;
+using BankAccount.Domain.Shared.Validations;
 using BankAccount.Domain.Transactions;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,13 @@ namespace BankAccount.Domain.Banks
             this.AuthenticatedUser = true;
             Accounts = new List<Account>();
             Accounts.Add(account);
+
+            AddNotifications(new Contract()
+                            .Requires()
+                            .ValidateMinMax(this.BankCode, 5, 10, "The BankCode field is invalid")
+                            .ValidateIfLessThan(this.BankCode, 4, "The BankCode field is invalid")
+                            .ValidateIfNull(this.CompanyName, "The CompanyName field can't be null")
+                            .ValidateIfEmpty(this.CompanyName, "The CompanyName field can't be empty"));
         }
 
         public int BankCode { get; private set; }
