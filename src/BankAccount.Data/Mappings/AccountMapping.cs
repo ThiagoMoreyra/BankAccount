@@ -31,7 +31,12 @@ namespace BankAccount.Data.Mappings
                 .WithOne(p => p.Account)
                 .HasForeignKey<Owner>(p => p.IdAccount);
 
-            builder.HasMany(p => p.Transactions)
+            builder.HasMany(p => p.Withdrawals)
+                .WithOne(p => p.Account)
+                .HasForeignKey(p => p.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(p => p.Deposits)
                 .WithOne(p => p.Account)
                 .HasForeignKey(p => p.Id)
                 .OnDelete(DeleteBehavior.Cascade);

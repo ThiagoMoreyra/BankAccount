@@ -102,25 +102,34 @@ namespace BankAccount.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tbTransactions",
+                name: "tbTransaction",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     IdAccount = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     IdBank = table.Column<byte[]>(type: "binary(32)", nullable: false),
-                    BankId = table.Column<Guid>(nullable: true)
+                    Amount = table.Column<decimal>(type: "decimal", nullable: false),
+                    MovDate = table.Column<DateTime>(type: "date", nullable: false),
+                    BankId = table.Column<Guid>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tbTransactions", x => x.Id);
+                    table.PrimaryKey("PK_tbTransaction", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_tbTransactions_tbBank_BankId",
+                        name: "FK_tbTransaction_tbAccount_Id",
+                        column: x => x.Id,
+                        principalTable: "tbAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_tbTransaction_tbBank_BankId",
                         column: x => x.BankId,
                         principalTable: "tbBank",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_tbTransactions_tbAccount_Id",
+                        name: "FK_tbTransaction_tbAccount_Id1",
                         column: x => x.Id,
                         principalTable: "tbAccount",
                         principalColumn: "Id",
@@ -149,8 +158,8 @@ namespace BankAccount.Data.Migrations
                 column: "OwnerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_tbTransactions_BankId",
-                table: "tbTransactions",
+                name: "IX_tbTransaction_BankId",
+                table: "tbTransaction",
                 column: "BankId");
         }
 
@@ -160,7 +169,7 @@ namespace BankAccount.Data.Migrations
                 name: "tbBankStatement");
 
             migrationBuilder.DropTable(
-                name: "tbTransactions");
+                name: "tbTransaction");
 
             migrationBuilder.DropTable(
                 name: "tbAccount");

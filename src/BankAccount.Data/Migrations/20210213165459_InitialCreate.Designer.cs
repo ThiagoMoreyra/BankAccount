@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankAccount.Data.Migrations
 {
     [DbContext(typeof(BankAccountContext))]
-    [Migration("20210213135136_InitialCreate")]
+    [Migration("20210213165459_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,8 +127,15 @@ namespace BankAccount.Data.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("char(36)");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal");
+
                     b.Property<Guid?>("BankId")
                         .HasColumnType("char(36)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<byte[]>("IdAccount")
                         .IsRequired()
@@ -138,11 +145,30 @@ namespace BankAccount.Data.Migrations
                         .IsRequired()
                         .HasColumnType("binary(32)");
 
+                    b.Property<DateTime>("MovDate")
+                        .HasColumnType("date");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
 
-                    b.ToTable("tbTransactions");
+                    b.ToTable("tbTransaction");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Transaction");
+                });
+
+            modelBuilder.Entity("BankAccount.Domain.Transactions.Deposit", b =>
+                {
+                    b.HasBaseType("BankAccount.Domain.Transactions.Transaction");
+
+                    b.HasDiscriminator().HasValue("Deposit");
+                });
+
+            modelBuilder.Entity("BankAccount.Domain.Transactions.Withdrawal", b =>
+                {
+                    b.HasBaseType("BankAccount.Domain.Transactions.Transaction");
+
+                    b.HasDiscriminator().HasValue("Withdrawal");
                 });
 
             modelBuilder.Entity("BankAccount.Domain.Accounts.Account", b =>
@@ -257,10 +283,23 @@ namespace BankAccount.Data.Migrations
                     b.HasOne("BankAccount.Domain.Banks.Bank", "Bank")
                         .WithMany("Transactions")
                         .HasForeignKey("BankId");
+                });
 
+            modelBuilder.Entity("BankAccount.Domain.Transactions.Deposit", b =>
+                {
                     b.HasOne("BankAccount.Domain.Accounts.Account", "Account")
-                        .WithMany("Transactions")
+                        .WithMany("Deposits")
                         .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BankAccount.Domain.Transactions.Withdrawal", b =>
+                {
+                    b.HasOne("BankAccount.Domain.Accounts.Account", "Account")
+                        .WithMany("Withdrawals")
+                        .HasForeignKey("Id")
+                        .HasConstraintName("FK_tbTransaction_tbAccount_Id1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

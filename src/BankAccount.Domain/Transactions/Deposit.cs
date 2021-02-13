@@ -1,17 +1,14 @@
 ﻿using BankAccount.Domain.Accounts;
 using BankAccount.Domain.Banks;
+using System;
 
 namespace BankAccount.Domain.Transactions
 {
     public class Deposit : Transaction
     {
-        public Deposit(double amount, Account account, Bank bank)
-            : base(bank, account)
-        {
-            Amount = amount;                    
-        }
+        public Deposit(double amount, DateTime movDate)
+            : base(amount, movDate) { }
 
-        public double Amount { get; private set; }                
         public int Execute()
         {
             return Bank.Credit(Account.Id, this.Amount);

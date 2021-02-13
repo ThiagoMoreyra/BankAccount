@@ -35,7 +35,8 @@ namespace BankAccount.Domain.Accounts
         public DateTime CreationDate { get; private set; }
         public Owner Owner { get; private set; }
         public Bank Bank { get; set; }
-        public List<Transaction> Transactions { get; set; }        
+        public List<Deposit> Deposits { get; set; }        
+        public List<Withdrawal> Withdrawals { get; set; }
 
         public int MakeDeposit(double amount)
         {

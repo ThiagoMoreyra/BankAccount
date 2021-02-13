@@ -19,7 +19,15 @@ namespace BankAccount.Data.Mappings
                 .IsRequired()
                 .HasColumnType("binary(32)");
 
-            builder.ToTable("tbTransactions");
+            builder.Property(p => p.Amount)
+               .IsRequired()
+               .HasColumnType("decimal");
+
+            builder.Property(p => p.MovDate)
+                .IsRequired()
+                .HasColumnType("date");
+
+            builder.ToTable("tbTransaction");
         }
     }
 }

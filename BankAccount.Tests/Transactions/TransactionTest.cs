@@ -21,13 +21,13 @@ namespace BankAccount.Tests.Transactions
             var address = new Address("Rua x", "123", "x", "x", "x", "x", "x");
             var owner = new Owner(name, new DateTime(1900, 11, 10), cpf, address);
             account = new Account(12345, 123.0, owner);
-            bank = new Bank(123, account,"Bradesco");
+            bank = new Bank(123, account, "Bradesco");
         }
 
         [Fact]
         public void MakeWithdraw_Return_Withdraw_Realized()
-        {            
-            withdrawal = new Withdrawal(12.0, account, bank);
+        {
+            withdrawal = new Withdrawal(12.0, DateTime.Now);
 
             int result = withdrawal.Execute();
 
@@ -37,8 +37,8 @@ namespace BankAccount.Tests.Transactions
         [Fact]
         public void MakeWithdraw_Return_Withdraw_Not_Realized()
         {
-            
-            withdrawal = new Withdrawal(500.0, account, bank);
+
+            withdrawal = new Withdrawal(500.0, DateTime.Now);
 
             int result = withdrawal.Execute();
 
@@ -49,7 +49,7 @@ namespace BankAccount.Tests.Transactions
         public void MakeWithdraw_Return_AvaliableBalance_Valid()
         {
 
-            withdrawal = new Withdrawal(20.0, account, bank);
+            withdrawal = new Withdrawal(20.0, DateTime.Now);
 
             int result = withdrawal.Execute();
 
@@ -60,7 +60,7 @@ namespace BankAccount.Tests.Transactions
         public void MakeDeposit_Return_AvaliableBalance_Valid()
         {
 
-            deposit = new Deposit(20.0, account, bank);
+            deposit = new Deposit(20.0, DateTime.Now);
 
             int result = deposit.Execute();
 
