@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankAccount.Data.Migrations
 {
     [DbContext(typeof(BankAccountContext))]
-    [Migration("20210213054831_InitialCreate")]
+    [Migration("20210213135136_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,7 +125,6 @@ namespace BankAccount.Data.Migrations
             modelBuilder.Entity("BankAccount.Domain.Transactions.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("BankId")
@@ -142,8 +141,6 @@ namespace BankAccount.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
-
-                    b.HasIndex("IdAccount");
 
                     b.ToTable("tbTransactions");
                 });
@@ -263,7 +260,7 @@ namespace BankAccount.Data.Migrations
 
                     b.HasOne("BankAccount.Domain.Accounts.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("IdAccount")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

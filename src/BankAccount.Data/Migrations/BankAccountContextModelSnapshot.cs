@@ -123,7 +123,6 @@ namespace BankAccount.Data.Migrations
             modelBuilder.Entity("BankAccount.Domain.Transactions.Transaction", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("BankId")
@@ -140,8 +139,6 @@ namespace BankAccount.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
-
-                    b.HasIndex("IdAccount");
 
                     b.ToTable("tbTransactions");
                 });
@@ -261,7 +258,7 @@ namespace BankAccount.Data.Migrations
 
                     b.HasOne("BankAccount.Domain.Accounts.Account", "Account")
                         .WithMany("Transactions")
-                        .HasForeignKey("IdAccount")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

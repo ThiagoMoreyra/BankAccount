@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
+﻿CREATE TABLE IF NOT EXISTS `__EFMigrationsHistory` (
     `MigrationId` varchar(95) NOT NULL,
     `ProductVersion` varchar(32) NOT NULL,
     CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
@@ -61,7 +61,7 @@ CREATE TABLE `tbTransactions` (
     `BankId` char(36) NULL,
     CONSTRAINT `PK_tbTransactions` PRIMARY KEY (`Id`),
     CONSTRAINT `FK_tbTransactions_tbBank_BankId` FOREIGN KEY (`BankId`) REFERENCES `tbBank` (`Id`) ON DELETE RESTRICT,
-    CONSTRAINT `FK_tbTransactions_tbAccount_Id` FOREIGN KEY (`Id`) REFERENCES `tbAccount` (`Id`) ON DELETE CASCADE
+    CONSTRAINT `FK_tbTransactions_tbAccount_IdAccount` FOREIGN KEY (`IdAccount`) REFERENCES `tbAccount` (`Id`) ON DELETE CASCADE
 );
 
 CREATE INDEX `IX_tbAccount_IdBank` ON `tbAccount` (`IdBank`);
@@ -74,6 +74,8 @@ CREATE INDEX `IX_tbBankStatement_OwnerId` ON `tbBankStatement` (`OwnerId`);
 
 CREATE INDEX `IX_tbTransactions_BankId` ON `tbTransactions` (`BankId`);
 
+CREATE INDEX `IX_tbTransactions_IdAccount` ON `tbTransactions` (`IdAccount`);
+
 INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20210213135136_InitialCreate', '3.1.11');
+VALUES ('20210213133422_InitialCreate', '3.1.11');
 

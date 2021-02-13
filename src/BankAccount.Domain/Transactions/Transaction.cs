@@ -14,8 +14,8 @@ namespace BankAccount.Domain.Transactions
             Account = account;
         }
 
-        public Guid IdAccount { get; private set; }
-        public Guid IdBank { get; private set; }
+        public Guid IdAccount { get; set; }
+        public Guid IdBank { get; set; }
         public Bank Bank { get; private set; }
         public Account Account { get; private set; }        
     }

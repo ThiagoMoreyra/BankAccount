@@ -120,8 +120,8 @@ namespace BankAccount.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_tbTransactions_tbAccount_IdAccount",
-                        column: x => x.IdAccount,
+                        name: "FK_tbTransactions_tbAccount_Id",
+                        column: x => x.Id,
                         principalTable: "tbAccount",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -152,11 +152,6 @@ namespace BankAccount.Data.Migrations
                 name: "IX_tbTransactions_BankId",
                 table: "tbTransactions",
                 column: "BankId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_tbTransactions_IdAccount",
-                table: "tbTransactions",
-                column: "IdAccount");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

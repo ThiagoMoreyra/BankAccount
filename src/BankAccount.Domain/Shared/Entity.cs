@@ -7,7 +7,7 @@ namespace BankAccount.Domain.Shared
     public abstract class Entity : Notifiable
     {
         [Key]
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         protected Entity()
         {

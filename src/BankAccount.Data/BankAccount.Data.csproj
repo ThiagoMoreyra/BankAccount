@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210213054831_InitialCreate.cs" />
+    <Compile Remove="Migrations\20210213054831_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20210213133422_InitialCreate.cs" />
+    <Compile Remove="Migrations\20210213133422_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20210213134201_InitialCreate.cs" />
+    <Compile Remove="Migrations\20210213134201_InitialCreate.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Scripts\" />
   </ItemGroup>
 

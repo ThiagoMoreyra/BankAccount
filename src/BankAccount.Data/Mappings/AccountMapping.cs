@@ -33,7 +33,7 @@ namespace BankAccount.Data.Mappings
 
             builder.HasMany(p => p.Transactions)
                 .WithOne(p => p.Account)
-                .HasForeignKey(p => p.IdAccount)
+                .HasForeignKey(p => p.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("tbAccount");
