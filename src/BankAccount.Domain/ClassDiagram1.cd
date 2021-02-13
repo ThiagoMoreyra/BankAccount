@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BankAccount.Domain.Accounts.Calculation.CalculationFutureValue" Collapsed="true">
+    <Position X="33.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Accounts\Calculation\CalculationFutureValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Accounts.Account" Collapsed="true">
+    <Position X="17.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQCAACCAAAAAAAAAAFgQAQAABAAAAAgAAAEAAAAAAAA=</HashCode>
+      <FileName>Accounts\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Banks.Bank" Collapsed="true">
+    <Position X="26.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAIAAAAAAAAhABAAAAAAAAFAAAAACgAAAAAEAAAAA=</HashCode>
+      <FileName>Banks\Bank.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.BankStatements.BankStatement" Collapsed="true">
+    <Position X="15" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAACAAAAAAAEAAAAAEAAAAEA=</HashCode>
+      <FileName>BankStatements\BankStatement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Clients.Owner" Collapsed="true">
+    <Position X="28.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAAAAQEAAAIAAACAAAAAACAAEA=</HashCode>
+      <FileName>Owners\Owner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Notify.Notifiable" Collapsed="true">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAgAAAAAAAAAAAAAAAQAQAAgAAABABAAAA=</HashCode>
+      <FileName>Shared\Notify\Notifiable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Notify.Notification" Collapsed="true">
+    <Position X="33.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAA=</HashCode>
+      <FileName>Shared\Notify\Notification.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Validations.CpfValidation" Collapsed="true">
+    <Position X="35" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAQCAAAAAAAAAAAAAAAgAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\Validations\CpfValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Validations.DigitoVerificador" Collapsed="true">
+    <Position X="36.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAQAAAAAAABAAAAAAAAAQBAAAAASAAAAAACEAAAAE=</HashCode>
+      <FileName>Shared\Validations\CpfValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Validations.Utils" Collapsed="true">
+    <Position X="35" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Shared\Validations\CpfValidation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Validations.Contract" Collapsed="true">
+    <Position X="30.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAgAAABAAAAAAAAAAABBAAAEIAAgAAAAAAACACAAA=</HashCode>
+      <FileName>Shared\Validations\Validation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.ValueObjects.Address" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAEAAAAAIAAIAAAABAAIABAAAAAA=</HashCode>
+      <FileName>Shared\ValueObjects\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.ValueObjects.Cpf" Collapsed="true">
+    <Position X="10.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\ValueObjects\Cpf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.ValueObjects.Name" Collapsed="true">
+    <Position X="12.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Shared\ValueObjects\Name.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.ValueObjects.ValueObject" Collapsed="true">
+    <Position X="10.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\ValueObjects\ValueObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Shared.Entity" Collapsed="true">
+    <Position X="21.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEgAAAAAAAAAAAAIAAAAAAAAAAAiA=</HashCode>
+      <FileName>Shared\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Transactions.Deposit" Collapsed="true">
+    <Position X="24" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAQAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\Deposit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Transactions.Pay" Collapsed="true">
+    <Position X="19.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\Pay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Transactions.Transaction" Collapsed="true">
+    <Position X="21.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAQAAAAAAQAEAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Transactions\Transaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BankAccount.Domain.Transactions.Withdrawal" Collapsed="true">
+    <Position X="21.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\Withdrawal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="BankAccount.Domain.Accounts.IAccountRepository" Collapsed="true">
+    <Position X="12" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Accounts\IAccountRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BankAccount.Domain.Banks.IBankRepository" Collapsed="true">
+    <Position X="16.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Banks\IBankRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BankAccount.Domain.BankStatements.IBankStatementRepository" Collapsed="true">
+    <Position X="9.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BankStatements\IBankStatementRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BankAccount.Domain.Owners.IOwnerRepository" Collapsed="true">
+    <Position X="14.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Owners\IOwnerRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BankAccount.Domain.Shared.Data.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="12" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\Data\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BankAccount.Domain.Shared.Data.IUnitOfWork" Collapsed="true">
+    <Position X="33.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shared\Data\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BankAccount.Domain.Transactions.ITransactionRepository" Collapsed="true">
+    <Position X="7.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transactions\ITransactionRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BankAccount.Domain.BankStatements.Enum.TransactionType" Collapsed="true">
+    <Position X="33.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAI=</HashCode>
+      <FileName>BankStatements\Enum\TransactionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

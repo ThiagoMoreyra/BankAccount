@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "2Lz+KIRIQvZ8NCoa88IkD18ciEp0MaO0E14rf/kiS+x1k9nswcoYXFNPCb5srhzziP7gxJIIgM0WK14JdZe5sQ==",
+  "success": true,
+  "projectFilePath": "C:\\repo\\BankAccount\\BankAccount.App\\src\\BankAccount.Application\\BankAccount.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\thiag\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\thiag\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\thiag\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
