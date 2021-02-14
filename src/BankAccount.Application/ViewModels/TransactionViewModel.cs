@@ -9,10 +9,7 @@ namespace BankAccount.Application.ViewModels
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
-        public Guid IdAccount { get; private set; }
-
-        [Required(ErrorMessage = "The field {0} is required")]
-        public Guid IdBank { get; private set; }
+        public Guid IdAccount { get; private set; }        
 
         [Required(ErrorMessage = "The field {0} is required")]
         public double Amount { get; set; }

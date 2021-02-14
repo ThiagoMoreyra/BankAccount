@@ -2,7 +2,7 @@
 
 namespace BankAccount.Application.UseCases.Accounts
 {
-    public interface IOpenAcountUseCase
+    public interface IOpenAccountUseCase
     {
         void RegisterAccount(AccountViewModel accountViewModel);
     }

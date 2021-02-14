@@ -1,47 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BankAccount.Api.Filter;
+using BankAccount.Application.UseCases.RegisterOwner;
+using BankAccount.Application.ViewModels;
+using BankAccount.Domain.Shared.Notify;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/owners")]
     [ApiController]
-    public class OwnerController : ControllerBase
+    public class OwnerController : MainController
     {
-        // GET: api/<OwnerController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IRegisterOwnerUseCase _registerOwnerUseCase;
+        private readonly INotifiable notifiable;
+
+        public OwnerController(INotifiable notifiable, IRegisterOwnerUseCase registerOwnerUseCase) : base(notifiable)
         {
-            return new string[] { "value1", "value2" };
+            _registerOwnerUseCase = registerOwnerUseCase;
         }
 
-        // GET api/<OwnerController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<OwnerController>
+        [ValidateModel]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] OwnerViewModel ownerViewModel)
         {
-        }
-
-        // PUT api/<OwnerController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<OwnerController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+            _registerOwnerUseCase.RegisterOwner(ownerViewModel);
+            return CustomResponse(ownerViewModel);
+        }        
     }
 }

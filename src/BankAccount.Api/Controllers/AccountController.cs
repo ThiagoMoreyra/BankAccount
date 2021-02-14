@@ -1,44 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using BankAccount.Api.Filter;
+using BankAccount.Application.UseCases.Accounts;
+using BankAccount.Application.UseCases.GetAccount;
+using BankAccount.Application.ViewModels;
+using BankAccount.Domain.Shared.Notify;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("v1/accounts")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountController : MainController
     {
-        // GET: api/<AccountController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly INotifiable _notifiable;
+        private readonly IOpenAccountUseCase _accountUseCase;
+        private readonly IGetAccountUseCase _getAccountUseCase;
+        public AccountController(INotifiable notifiable, IOpenAccountUseCase accountUseCase, IGetAccountUseCase getAccountUseCase)
+            : base(notifiable)
         {
-            return new string[] { "value1", "value2" };
+            _notifiable = notifiable;
+            _accountUseCase = accountUseCase;
+            _getAccountUseCase = getAccountUseCase;
         }
 
-        // GET api/<AccountController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<AccountController>
+        [ValidateModel]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] AccountViewModel accountViewModel)
         {
+            _accountUseCase.RegisterAccount(accountViewModel);
+            return CustomResponse(accountViewModel);
         }
 
-        // PUT api/<AccountController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ValidateModel]
+        [HttpGet("avaliable-account")]
+        public async Task<IActionResult> Get([FromQuery] double fee, [FromQuery] Guid idAccount)
         {
-        }
-
-        // DELETE api/<AccountController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return CustomResponse(_getAccountUseCase.GetAvaliableAccount(fee, idAccount));
         }
     }
 }

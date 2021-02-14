@@ -16,7 +16,7 @@ namespace BankAccount.Application.UseCases.RegisterOwner
             _mapper = mapper;
         }
 
-        public void RegisterBank(OwnerViewModel ownerViewModel)
+        public void RegisterOwner(OwnerViewModel ownerViewModel)
         {
             var owner = _mapper.Map<Owner>(ownerViewModel);
             _ownerService.RegisterOwner(owner);

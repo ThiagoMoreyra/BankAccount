@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BankAccount.Domain.Shared.Notify
 {
-    public abstract class Notifiable
+    public abstract class Notifiable: INotifiable
     {
         private readonly List<Notification> _notifications;
         protected Notifiable() => _notifications = new List<Notification>();
@@ -11,7 +11,7 @@ namespace BankAccount.Domain.Shared.Notify
 
         public void AddNotification(string property, string message)
         {
-            _notifications.Add(new Notification(property, message));
+            _notifications.Add(new Notification(message));
         }
 
         public void AddNotification(Notification notification)

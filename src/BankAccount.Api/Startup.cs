@@ -1,3 +1,4 @@
+using BankAccount.Api.Configuration;
 using BankAccount.Api.Middleware;
 using BankAccount.Data.Context;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,6 @@ namespace BankAccount.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BankAccountContext>(options =>
@@ -38,10 +38,11 @@ namespace BankAccount.Api
 
             services.AddGlobalExceptionHandlerMiddleware();
 
+            services.InjectionConfigurationServices();
+
             services.AddControllers();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

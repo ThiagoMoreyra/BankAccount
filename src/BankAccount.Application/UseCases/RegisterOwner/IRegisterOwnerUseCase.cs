@@ -4,6 +4,6 @@ namespace BankAccount.Application.UseCases.RegisterOwner
 {
     public interface IRegisterOwnerUseCase
     {
-        void RegisterBank(OwnerViewModel ownerViewModel);
+        void RegisterOwner(OwnerViewModel ownerViewModel);
     }
 }

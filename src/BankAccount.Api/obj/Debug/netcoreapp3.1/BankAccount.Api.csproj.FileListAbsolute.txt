@@ -48,3 +48,6 @@ C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\obj\Debug\netcoreapp3.1\
 C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\obj\Debug\netcoreapp3.1\BankAccount.Api.dll
 C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\obj\Debug\netcoreapp3.1\BankAccount.Api.pdb
 C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\obj\Debug\netcoreapp3.1\BankAccount.Api.genruntimeconfig.cache
+C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\bin\Debug\netcoreapp3.1\BankAccount.Application.dll
+C:\repo\BankAccount\BankAccount.App\src\BankAccount.Api\bin\Debug\netcoreapp3.1\BankAccount.Application.pdb

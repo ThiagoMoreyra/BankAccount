@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BankAccount.Api.Filter;
+using BankAccount.Application.UseCases.RegisterBankStatement;
+using BankAccount.Domain.Shared.Notify;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +11,23 @@ using System.Threading.Tasks;
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/bankstatement")]
     [ApiController]
-    public class BankStatementController : ControllerBase
+    public class BankStatementController : MainController
     {
-        // GET: api/<BankStatementController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IRegisterBankStatementUseCase _bankStatementUseCase;
+        private readonly INotifiable notifiable;
+        public BankStatementController(INotifiable notifiable, IRegisterBankStatementUseCase bankStatementUseCase)
+            : base(notifiable)
         {
-            return new string[] { "value1", "value2" };
+            _bankStatementUseCase = bankStatementUseCase;
         }
 
-        // GET api/<BankStatementController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[ValidateModel]
+        //[HttpPost]
+        //public async Task<IActionResult> Post([FromBody] Ban)
+        //{
 
-        // POST api/<BankStatementController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<BankStatementController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<BankStatementController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //}        
     }
 }

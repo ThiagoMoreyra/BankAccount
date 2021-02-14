@@ -4,7 +4,7 @@ using BankAccount.Domain.Accounts;
 
 namespace BankAccount.Application.UseCases.Accounts
 {
-    public class OpenAccountUseCase: IOpenAcountUseCase
+    public class OpenAccountUseCase: IOpenAccountUseCase
     {
         private readonly IAccountService _accountService;
         private readonly IMapper _mapper;

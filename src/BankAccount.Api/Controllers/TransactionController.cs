@@ -1,47 +1,54 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BankAccount.Api.Filter;
+using BankAccount.Application.UseCases.Deposits;
+using BankAccount.Application.UseCases.Pays;
+using BankAccount.Application.UseCases.Withdrawals;
+using BankAccount.Application.ViewModels;
+using BankAccount.Domain.Shared.Notify;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/transactions")]
     [ApiController]
-    public class TransactionController : ControllerBase
+    public class TransactionController : MainController
     {
-        // GET: api/<TransactionController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly INotifiable notifiable;
+        private readonly IWithdrawalUseCase _withdrawalUseCase;
+        private readonly IDepositUseCase _depositUseCase;
+        private readonly IPayUseCase _payUseCase;
+        public TransactionController(INotifiable notifiable, IWithdrawalUseCase withdrawalUseCase, IDepositUseCase depositUseCase, IPayUseCase payUseCase)
+            : base(notifiable)
         {
-            return new string[] { "value1", "value2" };
+            _withdrawalUseCase = withdrawalUseCase;
+            _depositUseCase = depositUseCase;
+            _payUseCase = payUseCase;
         }
 
-        // GET api/<TransactionController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [ValidateModel]
+        [HttpPost("withdrawal")]
+        public async Task<IActionResult> Withdrawal([FromBody] TransactionViewModel transactionViewModel)
         {
-            return "value";
+            _withdrawalUseCase.Withdrawal(transactionViewModel.IdAccount, transactionViewModel.Amount);
+            return CustomResponse(transactionViewModel);
         }
 
-        // POST api/<TransactionController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [ValidateModel]
+        [HttpPost("deposit")]
+        public async Task<IActionResult> Deposit([FromBody] TransactionViewModel transactionViewModel)
         {
+            _depositUseCase.Deposit(transactionViewModel.IdAccount, transactionViewModel.Amount);
+            return CustomResponse(transactionViewModel);
         }
 
-        // PUT api/<TransactionController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [ValidateModel]
+        [HttpPost("pay")]
+        public async Task<IActionResult> Pay([FromBody] TransactionViewModel transactionViewModel)
         {
-        }
-
-        // DELETE api/<TransactionController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            _payUseCase.Pay(transactionViewModel.IdAccount, transactionViewModel.Amount);
+            return CustomResponse(transactionViewModel);
         }
     }
 }
