@@ -1,13 +1,11 @@
 ﻿using BankAccount.Domain.Accounts.Calculation;
 using BankAccount.Domain.Banks;
-using BankAccount.Domain.BankStatements;
 using BankAccount.Domain.Clients;
 using BankAccount.Domain.Shared;
 using BankAccount.Domain.Shared.Validations;
 using BankAccount.Domain.Transactions;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BankAccount.Domain.Accounts
 {

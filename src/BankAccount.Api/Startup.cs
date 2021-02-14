@@ -1,3 +1,4 @@
+using BankAccount.Api.Middleware;
 using BankAccount.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +36,8 @@ namespace BankAccount.Api
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );
 
+            services.AddGlobalExceptionHandlerMiddleware();
+
             services.AddControllers();
         }
 
@@ -51,6 +54,8 @@ namespace BankAccount.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseGlobalExceptionHandlerMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
