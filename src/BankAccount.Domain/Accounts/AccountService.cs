@@ -1,4 +1,7 @@
-﻿namespace BankAccount.Domain.Accounts
+﻿using System;
+using System.Threading.Tasks;
+
+namespace BankAccount.Domain.Accounts
 {
     public class AccountService : IAccountService
     {
@@ -16,6 +19,16 @@
         public decimal GetAvaliableBalance(double fee, Account account)
         {
             return account.GetAvaliableDailyProfitBalance(fee);
+        }
+
+        public async Task<Account> GetAccountById(Guid id)
+        {
+            return await _accountRepository.GetById(id);
+        }
+
+        public void UpdateAccount(Account account)
+        {
+            _accountRepository.Update(account);
         }
     }
 }

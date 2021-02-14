@@ -1,6 +1,9 @@
-﻿namespace BankAccount.Application.UseCases.RegisterOwner
+﻿using BankAccount.Application.ViewModels;
+
+namespace BankAccount.Application.UseCases.RegisterOwner
 {
     public interface IRegisterOwnerUseCase
     {
+        void RegisterBank(OwnerViewModel ownerViewModel);
     }
 }

@@ -16,6 +16,7 @@ namespace BankAccount.Domain.Banks
             CompanyName = companyName;
             this.AuthenticatedUser = true;
             Accounts = new List<Account>();
+            Transactions = new List<Transaction>();
             
 
             AddNotifications(new Contract()

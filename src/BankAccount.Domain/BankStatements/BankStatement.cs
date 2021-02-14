@@ -9,16 +9,18 @@ namespace BankAccount.Domain.BankStatements
 {
     public class BankStatement : Entity
     {
-        public BankStatement() { }
-        public BankStatement(TransactionType transactionType, DateTime transactionDate, double amount)
+        protected BankStatement() { }
+        public BankStatement(TransactionType transactionType, DateTime transactionDate, double amount, Guid idAccount, Guid idOwner)
         {
             TransactionType = transactionType;
             TransactionDate = transactionDate;
             Amount = amount;
+            IdAccount = idAccount;
+            IdOwner = idOwner;
             
             AddNotifications(new Contract()
                             .Requires()
-                            .ValidateMinMax(this.Amount, 5, 10, "The BankCode field is invalid"));
+                            .ValidateMinMax(this.Amount, 5, 10, "The Amount field is invalid"));
         }
 
         public Guid IdAccount { get; set; }

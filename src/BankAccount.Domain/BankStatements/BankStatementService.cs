@@ -1,7 +1,4 @@
-﻿using BankAccount.Domain.Accounts;
-using System.Collections.Generic;
-
-namespace BankAccount.Domain.BankStatements
+﻿namespace BankAccount.Domain.BankStatements
 {
     public class BankStatementService : IBankStatementService
     {

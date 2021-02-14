@@ -12,13 +12,12 @@ namespace BankAccount.Domain.Clients
         {
             Name = name;
             BirthDay = birthDay;
-            Cpf = cpf;            
+            Cpf = cpf;
             Address = address;
 
             AddNotifications(name, cpf, address);
         }
 
-        public Guid IdAccount { get; set; }        
         public Name Name { get; private set; }
         public DateTime BirthDay { get; private set; }
         public Cpf Cpf { get; private set; }

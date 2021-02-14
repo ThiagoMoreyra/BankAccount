@@ -2,5 +2,6 @@
 {
     public interface IBankStatementService
     {
+        void RegisterBankStatement(BankStatement bankStatement);
     }
 }

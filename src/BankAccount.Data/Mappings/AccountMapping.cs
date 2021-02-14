@@ -25,11 +25,7 @@ namespace BankAccount.Data.Mappings
 
             builder.Property(p => p.CreationDate)
                 .IsRequired()
-                .HasColumnType("datetime");
-
-            builder.HasOne(p => p.Owner)
-                .WithOne(p => p.Account)
-                .HasForeignKey<Owner>(p => p.IdAccount);
+                .HasColumnType("datetime");                     
 
             builder.HasMany(p => p.Transactions)
                 .WithOne(p => p.Account)

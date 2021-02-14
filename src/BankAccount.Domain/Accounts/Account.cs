@@ -7,6 +7,7 @@ using BankAccount.Domain.Shared.Validations;
 using BankAccount.Domain.Transactions;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BankAccount.Domain.Accounts
 {

@@ -1,4 +1,6 @@
-﻿namespace BankAccount.Domain.Banks
+﻿using System;
+
+namespace BankAccount.Domain.Banks
 {
     public class BankService : IBankService
     {
@@ -11,7 +13,13 @@
 
         public void RegisterBank(Bank bank)
         {
-            _bankRepository.Add(bank);
+            if (bank.Valid)
+                _bankRepository.Add(bank);
+        }
+
+        public Bank GetBankById(Guid id)
+        {
+            return _bankRepository.GetById(id).Result;
         }
     }
 }
