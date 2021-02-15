@@ -14,8 +14,6 @@ namespace BankAccount.Domain.Owners
 
         public async Task<bool> RegisterOwner(Owner owner)
         {
-            if (owner.Invalid) return false;
-
             return await _ownerRepository.Add(owner);
         }
     }

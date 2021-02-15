@@ -13,14 +13,12 @@ namespace BankAccount.Domain.Accounts
 
         public async Task<bool> RegisterAccount(Account account)
         {
-            if (account.Invalid) return false;
-
             return await _accountRepository.Add(account);            
         }
 
         public decimal GetAvaliableBalance(double fee, Account account)
         {
-            return account.GetAvaliableDailyProfitBalance(fee);
+            return account.GetAccountYield(fee, account.Balance);
         }
 
         public async Task<Account> GetAccountById(Guid id)

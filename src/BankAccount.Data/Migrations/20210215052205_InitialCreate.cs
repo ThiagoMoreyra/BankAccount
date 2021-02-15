@@ -79,9 +79,10 @@ namespace BankAccount.Data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     IdAccount = table.Column<Guid>(nullable: false),
                     IdOwner = table.Column<Guid>(nullable: false),
-                    TransactionType = table.Column<int>(nullable: false),
-                    TransactionDate = table.Column<DateTime>(type: "date", nullable: false),
+                    TransactionType = table.Column<string>(type: "varchar(20)", nullable: false),
+                    TransactionDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal", nullable: false),
+                    AvaliableBalance = table.Column<decimal>(type: "decimal", nullable: false),
                     AccountId = table.Column<Guid>(nullable: true),
                     OwnerId = table.Column<Guid>(nullable: true)
                 },
@@ -110,7 +111,7 @@ namespace BankAccount.Data.Migrations
                     IdAccount = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     IdBank = table.Column<byte[]>(type: "binary(32)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal", nullable: false),
-                    MovDate = table.Column<DateTime>(type: "date", nullable: false),
+                    MovDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     BankId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

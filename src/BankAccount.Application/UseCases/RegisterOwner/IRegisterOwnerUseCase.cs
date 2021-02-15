@@ -5,6 +5,6 @@ namespace BankAccount.Application.UseCases.RegisterOwner
 {
     public interface IRegisterOwnerUseCase
     {
-        void RegisterOwner(OwnerViewModel ownerViewModel);
+        Task<bool> RegisterOwner(OwnerViewModel ownerViewModel);
     }
 }

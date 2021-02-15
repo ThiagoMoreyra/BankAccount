@@ -1,7 +1,9 @@
-﻿using BankAccount.Application.UseCases.Accounts;
+﻿using AspNetCoreRateLimit;
+using BankAccount.Application.UseCases.Accounts;
 using BankAccount.Application.UseCases.Banks;
 using BankAccount.Application.UseCases.Deposits;
 using BankAccount.Application.UseCases.GetAccount;
+using BankAccount.Application.UseCases.GetBankStatement;
 using BankAccount.Application.UseCases.Pays;
 using BankAccount.Application.UseCases.RegisterBankStatement;
 using BankAccount.Application.UseCases.RegisterOwner;
@@ -43,7 +45,7 @@ namespace BankAccount.Api.Configuration
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IBankStatementRepository, BankStatementRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
-            
+
 
             //UseCase
             services.AddScoped<IDepositUseCase, DepositUseCase>();
@@ -54,9 +56,15 @@ namespace BankAccount.Api.Configuration
             services.AddScoped<IRegisterBankStatementUseCase, RegisterBankStatementUseCase>();
             services.AddScoped<IRegisterOwnerUseCase, RegisterOwnerUseCase>();
             services.AddScoped<IWithdrawalUseCase, WithdrawalUseCase>();
+            services.AddScoped<IGetBankStatementUseCase, GetBankStatementUseCase>();
 
             //Notification
             services.AddScoped<INotifiable, Notifiable>();
+
+            //Security
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         }
     }
 }

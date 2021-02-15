@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("v1/accounts")]
+    [Route("api/v1/accounts")]
     [ApiController]
     public class AccountController : MainController
     {
@@ -29,15 +29,18 @@ namespace BankAccount.Api.Controllers
         [ValidateModel]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AccountViewModel accountViewModel)
-        {            
-            return CustomResponse(await _accountUseCase.RegisterAccount(accountViewModel));
+        {
+            var result = await _accountUseCase.RegisterAccount(accountViewModel);
+            if (result) return CustomResponse("Account successfully registered");
+
+            return CustomResponse("Account registration failed");
         }
 
         [ValidateModel]
-        [HttpGet("avaliable-account")]
-        public async Task<IActionResult> Get([FromQuery] double fee, [FromQuery] Guid idAccount)
+        [HttpGet("account-yield")]
+        public IActionResult Get([FromQuery] Guid idAccount)
         {
-            return CustomResponse(_getAccountUseCase.GetAvaliableAccount(fee, idAccount));
+            return CustomResponse($"Balance: {_getAccountUseCase.GetBalance(idAccount)}");
         }
     }
 }

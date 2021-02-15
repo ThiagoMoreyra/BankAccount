@@ -14,5 +14,8 @@ namespace BankAccount.Application.ViewModels
 
         [Required(ErrorMessage = "The field {0} is required")]
         public double Amount { get; private set; }
+
+        [Required(ErrorMessage = "The field {0} is required")]
+        public double AvaliableBalance { get; private set; }
     }
 }

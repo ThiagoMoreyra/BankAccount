@@ -2,6 +2,7 @@
 using BankAccount.Domain.Banks;
 using BankAccount.Domain.BankStatements;
 using BankAccount.Domain.BankStatements.Enum;
+using BankAccount.Domain.Shared.Notify;
 using BankAccount.Domain.Transactions;
 using System;
 using System.Threading.Tasks;
@@ -13,12 +14,14 @@ namespace BankAccount.Application.UseCases.Withdrawals
         private readonly IBankStatementService _bankStatementService;
         private readonly IBankService _bankService;
         private readonly IAccountService _accountService;
+        private readonly INotifiable _notifiable;
 
-        public WithdrawalUseCase(IBankStatementService bankStatementService, IBankService bankService, IAccountService accountService)
+        public WithdrawalUseCase(IBankStatementService bankStatementService, IBankService bankService, IAccountService accountService, INotifiable notifiable)
         {
             _bankStatementService = bankStatementService;
             _bankService = bankService;
             _accountService = accountService;
+            _notifiable = notifiable;
         }
 
         public async Task<bool> Withdrawal(Guid idAccount, double amount)
@@ -29,21 +32,37 @@ namespace BankAccount.Application.UseCases.Withdrawals
             if (account.Invalid && bank.Invalid) return false;
 
             Withdrawal withdrawal = new Withdrawal(amount, DateTime.Now, account, bank);
-            var updatedAccount = false;
-            var insertedBankStatement = false;
 
-            var result = withdrawal.Execute();
-            if (result > 0)
-            {
-                updatedAccount = await _accountService.UpdateAccount(account);
-                if (updatedAccount)
-                {
-                    var bankStatement = new BankStatement(TransactionType.Withdrawal, DateTime.Now, amount, account.Id, account.IdOwner);
-                    insertedBankStatement = await _bankStatementService.RegisterBankStatement(bankStatement);
-                }
-            }
+            if (WithdrawalMade(withdrawal) is false) return false;
+
+            var updatedAccount = await _accountService.UpdateAccount(account);
+            if (UpdateMade(updatedAccount) is false) return false;    
+
+            var bankStatement = new BankStatement(Enum.GetName(typeof(TransactionType), TransactionType.Withdrawal), DateTime.Now, amount, account.Balance, account.Id, account.IdOwner);
+            var insertedBankStatement = await _bankStatementService.RegisterBankStatement(bankStatement);
 
             return (updatedAccount && insertedBankStatement);
+        }
+
+        private bool WithdrawalMade(Withdrawal withdrawal)
+        {
+            var result = withdrawal.Execute();
+            if (result <= 0)
+            {
+                _notifiable.AddNotification(new Notification("Failed to withdraw"));
+                return false;
+            }
+            return true;
+        }
+
+        private bool UpdateMade(bool updatedAccount)
+        {
+            if (!updatedAccount)
+            {
+                _notifiable.AddNotification(new Notification("Failed to withdraw"));
+                return false;
+            }
+            return true;
         }
     }
 }

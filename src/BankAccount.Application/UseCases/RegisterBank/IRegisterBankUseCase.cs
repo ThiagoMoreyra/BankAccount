@@ -5,6 +5,6 @@ namespace BankAccount.Application.UseCases.Banks
 {
     public interface IRegisterBankUseCase
     {
-        void RegisterBank(BankViewModel bankViewModel);
+        Task<bool> RegisterBank(BankViewModel bankViewModel);
     }
 }

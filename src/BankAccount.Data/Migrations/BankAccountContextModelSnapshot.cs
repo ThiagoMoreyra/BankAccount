@@ -64,6 +64,9 @@ namespace BankAccount.Data.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal");
 
+                    b.Property<decimal>("AvaliableBalance")
+                        .HasColumnType("decimal");
+
                     b.Property<Guid>("IdAccount")
                         .HasColumnType("char(36)");
 
@@ -74,10 +77,11 @@ namespace BankAccount.Data.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("TransactionDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
-                    b.Property<int>("TransactionType")
-                        .HasColumnType("int");
+                    b.Property<string>("TransactionType")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
@@ -143,7 +147,7 @@ namespace BankAccount.Data.Migrations
                         .HasColumnType("binary(32)");
 
                     b.Property<DateTime>("MovDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime");
 
                     b.HasKey("Id");
 

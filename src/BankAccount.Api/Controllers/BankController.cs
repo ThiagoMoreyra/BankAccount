@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("api/banks")]
+    [Route("api/v1/banks")]
     [ApiController]
     public class BankController : MainController
     {

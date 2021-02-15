@@ -14,13 +14,17 @@ namespace BankAccount.Data.Mappings
                 .IsRequired()
                 .HasColumnType("decimal");
 
+            builder.Property(p => p.AvaliableBalance)
+                .IsRequired()
+                .HasColumnType("decimal");
+
             builder.Property(p => p.TransactionDate)
                 .IsRequired()
-                .HasColumnType("date");
+                .HasColumnType("datetime");
 
             builder.Property(p => p.TransactionType)
                 .IsRequired()
-                .HasConversion<int>();
+                .HasColumnType("varchar(20)");
 
             builder.ToTable("tbBankStatement");
         }

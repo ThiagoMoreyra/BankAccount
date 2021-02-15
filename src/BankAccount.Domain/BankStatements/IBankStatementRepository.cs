@@ -11,5 +11,7 @@ namespace BankAccount.Domain.BankStatements
         Task<IEnumerable<BankStatement>> GetAll();
         Task<bool> Add(BankStatement bankStatement);
         Task<bool> Update(BankStatement bankStatement);
+        Task<IEnumerable<BankStatement>> Find(Guid idAccount);
+        Task<BankStatement> FindByIdAccount(Guid idAccount);
     }
 }

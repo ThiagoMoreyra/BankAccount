@@ -2,8 +2,10 @@
 using BankAccount.Domain.Banks;
 using BankAccount.Domain.BankStatements;
 using BankAccount.Domain.BankStatements.Enum;
+using BankAccount.Domain.Shared.Notify;
 using BankAccount.Domain.Transactions;
 using System;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.Pays
 {
@@ -12,30 +14,55 @@ namespace BankAccount.Application.UseCases.Pays
         private readonly IBankStatementService _bankStatementService;
         private readonly IBankService _bankService;
         private readonly IAccountService _accountService;
+        private readonly INotifiable _notifiable;
 
-        public PayUseCase(IBankStatementService bankStatementService, IBankService bankService, IAccountService accountService)
+        public PayUseCase(IBankStatementService bankStatementService, IBankService bankService, IAccountService accountService, INotifiable notifiable)
         {
             _bankStatementService = bankStatementService;
             _bankService = bankService;
             _accountService = accountService;
+            _notifiable = notifiable;
         }
 
-        public void Pay(Guid idAccount, double amount)
+        public async Task<bool> Pay(Guid idAccount, double amount)
         {
             var account = _accountService.GetAccountById(idAccount).Result;
             var bank = _bankService.GetBankById(account.IdBank);
 
-            if (account.Valid && bank.Valid)
+            if (account.Invalid && bank.Invalid) return false;
+
+            Pay pay = new Pay(amount, DateTime.Now, account, bank);
+
+            if (PayMade(pay) is false) return false;               
+
+            var updatedAccount = await _accountService.UpdateAccount(account);
+            if (UpdateMade(updatedAccount) is false) return false;      
+
+            var bankStatement = new BankStatement(Enum.GetName(typeof(TransactionType), TransactionType.Pay), DateTime.Now, amount, account.Balance, account.Id, account.IdOwner);
+            var insertedBankStatement = await _bankStatementService.RegisterBankStatement(bankStatement);
+
+            return (updatedAccount && insertedBankStatement);
+        }
+
+        private bool PayMade(Pay pay)
+        {
+            var result = pay.Execute();
+            if (result <= 0)
             {
-                Pay pay = new Pay(amount, DateTime.Now, account, bank);
-                var result = pay.Execute();
-                if (result > 0)
-                {
-                    _accountService.UpdateAccount(account);
-                    var bankStatement = new BankStatement(TransactionType.Pay, DateTime.Now, amount, account.Id, account.IdOwner);
-                    _bankStatementService.RegisterBankStatement(bankStatement);
-                }
+                _notifiable.AddNotification(new Notification("Payment failed"));
+                return false;
             }
+            return true;
+        }
+
+        private bool UpdateMade(bool updatedAccount)
+        {
+            if (!updatedAccount)
+            {
+                _notifiable.AddNotification(new Notification("Failed to withdraw"));
+                return false;
+            }
+            return true;
         }
     }
 }

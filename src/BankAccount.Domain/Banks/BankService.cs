@@ -14,8 +14,6 @@ namespace BankAccount.Domain.Banks
 
         public async Task<bool> RegisterBank(Bank bank)
         {
-            if (bank.Invalid) return false;
-
             return await _bankRepository.Add(bank);            
         }
 

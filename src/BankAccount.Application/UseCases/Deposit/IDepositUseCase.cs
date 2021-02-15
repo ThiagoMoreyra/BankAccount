@@ -5,6 +5,6 @@ namespace BankAccount.Application.UseCases.Deposits
 {
     public interface IDepositUseCase
     {
-        Task<bool> Deposit(Guid idAccount, double amount)
+        Task<bool> Deposit(Guid idAccount, double amount);
     }
 }

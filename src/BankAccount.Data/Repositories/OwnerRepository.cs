@@ -21,8 +21,15 @@ namespace BankAccount.Data.Repositories
 
         public async Task<bool> Add(Owner owner)
         {
-            _context.Owners.Add(owner);
-            return await _context.SaveChangesAsync() > 0;
+            try
+            {
+                _context.Owners.Add(owner);
+                return  _context.SaveChanges() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }           
         }        
 
         public async Task<IEnumerable<Owner>> GetAll()
@@ -38,7 +45,7 @@ namespace BankAccount.Data.Repositories
         public async Task<bool> Update(Owner owner)
         {
             _context.Update(owner);
-            return await _context.SaveChangesAsync() > 0;
+            return _context.SaveChanges() > 0;
         }        
     }
 }

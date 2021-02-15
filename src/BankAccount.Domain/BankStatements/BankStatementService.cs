@@ -12,9 +12,7 @@ namespace BankAccount.Domain.BankStatements
         }
 
         public async Task<bool> RegisterBankStatement(BankStatement bankStatement)
-        {
-            if (bankStatement.Invalid) return false;
-           
+        {         
             return await _bankStatementRepository.Add(bankStatement);            
         }        
     }

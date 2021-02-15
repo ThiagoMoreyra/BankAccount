@@ -15,7 +15,7 @@ namespace BankAccount.Domain.Accounts
         public Account(int number, double balance)
         {
             Number = number;
-            Balance = balance;            
+            Balance = (double)GetAccountYield(0.10, balance);
             CreationDate = DateTime.Now;
 
             AddNotifications(new Contract()
@@ -61,10 +61,11 @@ namespace BankAccount.Domain.Accounts
             return this.Balance;
         }
 
-        public decimal GetAvaliableDailyProfitBalance(double fee)
+        public decimal GetAccountYield(double fee, double balance)
         {
             var totalDays = CreationDate.Date.Subtract(DateTime.Now.Date).TotalDays;
-            return CalculationFutureValue.GetDailyProfit(fee, this.Balance, totalDays);
+            var result = CalculationFutureValue.GetDailyProfit(fee, balance, totalDays);
+            return result == 0 ? (decimal) balance : result;
         }
     }
 }

@@ -1,9 +1,10 @@
 ﻿using BankAccount.Application.ViewModels;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.RegisterBankStatement
 {
     public interface IRegisterBankStatementUseCase
     {
-        void RegisterBank(BankStatementViewModel bankStatementViewModel);
+        Task<bool> RegisterBank(BankStatementViewModel bankStatementViewModel);
     }
 }

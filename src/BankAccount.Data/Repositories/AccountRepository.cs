@@ -21,7 +21,7 @@ namespace BankAccount.Data.Repositories
         public async Task<bool> Add(Account account)
         {
             _context.Accounts.Add(account);
-            return await _context.SaveChangesAsync() > 0;
+            return _context.SaveChanges() > 0;
         }       
 
         public async Task<IEnumerable<Account>> GetAll()
@@ -37,7 +37,7 @@ namespace BankAccount.Data.Repositories
         public async Task<bool> Update(Account account)
         {
             _context.Update(account);
-            return await _context.SaveChangesAsync() > 0;
+            return _context.SaveChanges() > 0;
         }       
     }
 }

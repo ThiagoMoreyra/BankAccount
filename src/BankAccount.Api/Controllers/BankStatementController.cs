@@ -1,33 +1,32 @@
 ﻿using BankAccount.Api.Filter;
+using BankAccount.Application.UseCases.GetBankStatement;
 using BankAccount.Application.UseCases.RegisterBankStatement;
 using BankAccount.Domain.Shared.Notify;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BankAccount.Api.Controllers
 {
-    [Route("api/bankstatement")]
+    [Route("api/v1/bankstatement")]
     [ApiController]
     public class BankStatementController : MainController
     {
-        private readonly IRegisterBankStatementUseCase _bankStatementUseCase;
+        private readonly IGetBankStatementUseCase  _getBankStatementUseCase;
         private readonly INotifiable notifiable;
-        public BankStatementController(INotifiable notifiable, IRegisterBankStatementUseCase bankStatementUseCase)
+        public BankStatementController(INotifiable notifiable, IGetBankStatementUseCase getBankStatementUseCase)
             : base(notifiable)
         {
-            _bankStatementUseCase = bankStatementUseCase;
+            _getBankStatementUseCase = getBankStatementUseCase;
         }
 
-        //[ValidateModel]
-        //[HttpPost]
-        //public async Task<IActionResult> Post([FromBody] Ban)
-        //{
-
-        //}        
+        [ValidateModel]
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery] Guid idAccount)
+        {
+            return CustomResponse(await _getBankStatementUseCase.GetBankStatement(idAccount));
+        }
     }
 }

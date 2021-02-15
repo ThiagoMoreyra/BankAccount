@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v3.1": {
       "BankAccount.Api/1.0.0": {
         "dependencies": {
+          "AspNetCoreRateLimit": "3.2.2",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "BankAccount.Application": "1.0.0",
           "BankAccount.Data": "1.0.0",
@@ -307,6 +308,23 @@
         },
         "compile": {
           "BankAccount.Api.dll": {}
+        }
+      },
+      "AspNetCoreRateLimit/3.2.2": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "3.1.11",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.11",
+          "Microsoft.Extensions.Options": "3.1.11",
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/AspNetCoreRateLimit.dll": {
+            "assemblyVersion": "3.2.2.0",
+            "fileVersion": "3.2.2.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/AspNetCoreRateLimit.dll": {}
         }
       },
       "AutoMapper/10.1.1": {
@@ -684,11 +702,11 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.3": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.2.21924"
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.3.23909"
           }
         },
         "compile": {
@@ -733,7 +751,7 @@
       "Pomelo.JsonObject/2.2.1": {
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.3"
         },
         "runtime": {
           "lib/netstandard2.0/Pomelo.JsonObject.dll": {
@@ -3068,6 +3086,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AspNetCoreRateLimit/3.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ayEDHsR0d+c1UZx3c8EjmEw+WCskTjhAyAz4BF3eB2AyRJRzhIHiWbFwJ/hTUmwNs8kt0VigyKnwPonfnmR1JQ==",
+      "path": "aspnetcoreratelimit/3.2.2",
+      "hashPath": "aspnetcoreratelimit.3.2.2.nupkg.sha512"
+    },
     "AutoMapper/10.1.1": {
       "type": "package",
       "serviceable": true,
@@ -3292,12 +3317,12 @@
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/11.0.2": {
+    "Newtonsoft.Json/12.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
-      "path": "newtonsoft.json/11.0.2",
-      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+      "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "path": "newtonsoft.json/12.0.3",
+      "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
     },
     "Pomelo.EntityFrameworkCore.MySql/3.2.4": {
       "type": "package",

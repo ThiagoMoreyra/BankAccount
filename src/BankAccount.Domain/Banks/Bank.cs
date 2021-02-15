@@ -33,12 +33,11 @@ namespace BankAccount.Domain.Banks
         public List<Account> Accounts { get; set; }
         public List<Transaction> Transactions { get; set; }
 
-        public int Credit(Guid accountId, double amount)
+        public int Credit(Account account, double amount)
         {
             if (!UserIsAuthenticated())
                 return 0;
 
-            var account = GetAccount(accountId);
             return account.MakeDeposit(amount);
         }
 
@@ -50,12 +49,11 @@ namespace BankAccount.Domain.Banks
             return account.MakeWithdraw(amount);
         }
 
-        public int Pay(Guid accountId, double amount)
+        public int Pay(Account account, double amount)
         {
             if (!UserIsAuthenticated())
                 return 0;
 
-            var account = GetAccount(accountId);
             return account.MakePay(amount);
         }
 

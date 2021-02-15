@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using BankAccount.Api.Configuration;
 using BankAccount.Api.Middleware;
 using BankAccount.Application.AutoMapper;
@@ -45,6 +46,10 @@ namespace BankAccount.Api
 
             services.InjectionConfigurationServices();
 
+            services.AddMemoryCache();
+
+            services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
+
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
 
             services.AddSwaggerGen(c =>
@@ -71,6 +76,8 @@ namespace BankAccount.Api
             });
 
             app.UseRouting();
+
+            app.UseIpRateLimiting();
 
             app.UseAuthorization();
 

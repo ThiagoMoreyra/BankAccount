@@ -25,7 +25,7 @@ namespace BankAccount.Data.Mappings
 
             builder.Property(p => p.MovDate)
                 .IsRequired()
-                .HasColumnType("date");
+                .HasColumnType("datetime");
 
             builder.ToTable("tbTransaction");
         }
