@@ -3,6 +3,7 @@ using BankAccount.Application.UseCases.RegisterOwner;
 using BankAccount.Application.ViewModels;
 using BankAccount.Domain.Shared.Notify;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,10 +23,12 @@ namespace BankAccount.Api.Controllers
 
         [ValidateModel]
         [HttpPost]
-        public IActionResult Post([FromBody] OwnerViewModel ownerViewModel)
+        public async Task<IActionResult> Post([FromBody] OwnerViewModel ownerViewModel)
         {
-            _registerOwnerUseCase.RegisterOwner(ownerViewModel);
-            return CustomResponse(ownerViewModel);
+            var result = await _registerOwnerUseCase.RegisterOwner(ownerViewModel);
+            if(result) return CustomResponse(ownerViewModel);
+
+            return CustomResponse();
         }        
     }
 }

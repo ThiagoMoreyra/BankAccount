@@ -33,7 +33,7 @@ namespace BankAccount.Api.Controllers
             var result = await _accountUseCase.RegisterAccount(accountViewModel);
             if (result) return CustomResponse("Account successfully registered");
 
-            return CustomResponse("Account registration failed");
+            return CustomResponse();
         }
 
         [ValidateModel]

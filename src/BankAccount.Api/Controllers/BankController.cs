@@ -23,10 +23,12 @@ namespace BankAccount.Api.Controllers
 
         [ValidateModel]
         [HttpPost]
-        public IActionResult Post([FromBody] BankViewModel bankViewModel)
+        public async Task<IActionResult> Post([FromBody] BankViewModel bankViewModel)
         {
-            _registerBankUseCase.RegisterBank(bankViewModel);
-            return CustomResponse(bankViewModel);
+            var result = await _registerBankUseCase.RegisterBank(bankViewModel);
+            if(result) return CustomResponse(bankViewModel);
+
+            return CustomResponse();
         }
     }
 }
