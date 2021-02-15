@@ -9,7 +9,7 @@ namespace BankAccount.Domain.Banks
     {
         Task<Bank> GetById(Guid id);
         Task<IEnumerable<Bank>> GetAll();
-        void Add(Bank account);
-        void Update(Bank account);
+        Task<bool> Add(Bank bank);
+        Task<bool> Update(Bank bank);
     }
 }

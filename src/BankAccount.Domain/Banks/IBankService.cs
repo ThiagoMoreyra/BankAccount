@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace BankAccount.Domain.Banks
 {
     public interface IBankService
     {
-        void RegisterBank(Bank bank);
+        Task<bool> RegisterBank(Bank bank);
         Bank GetBankById(Guid id);
     }
 }

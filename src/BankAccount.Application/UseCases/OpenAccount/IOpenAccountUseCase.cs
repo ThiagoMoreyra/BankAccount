@@ -1,9 +1,10 @@
 ﻿using BankAccount.Application.ViewModels;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.Accounts
 {
     public interface IOpenAccountUseCase
     {
-        void RegisterAccount(AccountViewModel accountViewModel);
+        Task<bool> RegisterAccount(AccountViewModel accountViewModel);
     }
 }

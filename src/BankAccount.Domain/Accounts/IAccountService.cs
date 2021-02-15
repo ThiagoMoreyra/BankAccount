@@ -5,9 +5,9 @@ namespace BankAccount.Domain.Accounts
 {
     public interface IAccountService
     {
-        void RegisterAccount(Account account);
+        Task<bool> RegisterAccount(Account account);
         decimal GetAvaliableBalance(double fee, Account account);
         Task<Account> GetAccountById(Guid id);
-        void UpdateAccount(Account account);
+        Task<bool> UpdateAccount(Account account);
     }
 }

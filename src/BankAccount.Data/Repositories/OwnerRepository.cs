@@ -12,15 +12,17 @@ namespace BankAccount.Data.Repositories
     public class OwnerRepository : IOwnerRepository
     {
         private readonly BankAccountContext _context;
+        
         public OwnerRepository(BankAccountContext context)
         {
-            _context = context;
+            _context = context;            
         }
         public IUnitOfWork UnitOfWork => _context;
 
-        public void Add(Owner owner)
+        public async Task<bool> Add(Owner owner)
         {
             _context.Owners.Add(owner);
+            return await _context.SaveChangesAsync() > 0;
         }        
 
         public async Task<IEnumerable<Owner>> GetAll()
@@ -33,14 +35,10 @@ namespace BankAccount.Data.Repositories
             return await _context.Owners.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public void Update(Owner owner)
+        public async Task<bool> Update(Owner owner)
         {
-            _context.Owners.Update(owner);
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
+            _context.Update(owner);
+            return await _context.SaveChangesAsync() > 0;
+        }        
     }
 }

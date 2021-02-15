@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankAccount.Data.Migrations
 {
     [DbContext(typeof(BankAccountContext))]
-    [Migration("20210213214706_InitialCreate")]
+    [Migration("20210214173017_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,9 +120,6 @@ namespace BankAccount.Data.Migrations
                     b.Property<DateTime>("BirthDay")
                         .HasColumnType("datetime");
 
-                    b.Property<Guid>("IdAccount")
-                        .HasColumnType("char(36)");
-
                     b.HasKey("Id");
 
                     b.ToTable("tbOwner");
@@ -230,7 +227,7 @@ namespace BankAccount.Data.Migrations
                             b1.Property<Guid>("OwnerId")
                                 .HasColumnType("char(36)");
 
-                            b1.Property<string>("Number")
+                            b1.Property<string>("Document")
                                 .HasColumnName("Cpf")
                                 .HasColumnType("VARCHAR(100)");
 

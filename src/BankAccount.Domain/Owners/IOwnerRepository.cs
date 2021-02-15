@@ -10,7 +10,7 @@ namespace BankAccount.Domain.Owners
     {
         Task<Owner> GetById(Guid id);
         Task<IEnumerable<Owner>> GetAll();
-        void Add(Owner account);
-        void Update(Owner account);
+        Task<bool> Add(Owner owner);
+        Task<bool> Update(Owner owner);
     }
 }

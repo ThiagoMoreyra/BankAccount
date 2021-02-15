@@ -11,15 +11,17 @@ namespace BankAccount.Data.Repositories
     public class TransactionRepository : ITransactionRepository
     {
         private readonly BankAccountContext _context;
+        
         public TransactionRepository(BankAccountContext context)
         {
-            _context = context;
+            _context = context;            
         }
         public IUnitOfWork UnitOfWork => _context;
 
-        public void Add(Transaction transaction)
+        public async Task<bool> Add(Transaction transaction)
         {
             _context.Transactions.Add(transaction);
+            return await _context.SaveChangesAsync() > 0;
         }        
 
         public async Task<IEnumerable<Transaction>> GetAll()
@@ -32,14 +34,10 @@ namespace BankAccount.Data.Repositories
             return await _context.Transactions.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public void Update(Transaction transaction)
+        public async Task<bool> Update(Transaction transaction)
         {
-            _context.Transactions.Update(transaction);
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
+            _context.Update(transaction);
+            return await _context.SaveChangesAsync() > 0;
+        }   
     }
 }

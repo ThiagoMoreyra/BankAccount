@@ -1,7 +1,9 @@
-﻿namespace BankAccount.Domain.BankStatements
+﻿using System.Threading.Tasks;
+
+namespace BankAccount.Domain.BankStatements
 {
     public interface IBankStatementService
     {
-        void RegisterBankStatement(BankStatement bankStatement);
+        Task<bool> RegisterBankStatement(BankStatement bankStatement);
     }
 }

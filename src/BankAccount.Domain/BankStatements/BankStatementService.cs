@@ -1,4 +1,6 @@
-﻿namespace BankAccount.Domain.BankStatements
+﻿using System.Threading.Tasks;
+
+namespace BankAccount.Domain.BankStatements
 {
     public class BankStatementService : IBankStatementService
     {
@@ -9,9 +11,11 @@
             _bankStatementRepository = bankStatementRepository;
         }
 
-        public void RegisterBankStatement(BankStatement bankStatement)
+        public async Task<bool> RegisterBankStatement(BankStatement bankStatement)
         {
-            _bankStatementRepository.Add(bankStatement);
+            if (bankStatement.Invalid) return false;
+           
+            return await _bankStatementRepository.Add(bankStatement);            
         }        
     }
 }

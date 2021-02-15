@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace BankAccount.Domain.Banks
 {
@@ -11,10 +12,11 @@ namespace BankAccount.Domain.Banks
             _bankRepository = bankRepository;
         }
 
-        public void RegisterBank(Bank bank)
+        public async Task<bool> RegisterBank(Bank bank)
         {
-            if (bank.Valid)
-                _bankRepository.Add(bank);
+            if (bank.Invalid) return false;
+
+            return await _bankRepository.Add(bank);            
         }
 
         public Bank GetBankById(Guid id)

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.Withdrawals
 {
     public interface IWithdrawalUseCase
     {
-        void Withdrawal(Guid idAccount, double amount);
+        Task<bool> Withdrawal(Guid idAccount, double amount);
     }
 }

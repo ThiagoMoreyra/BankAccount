@@ -2,7 +2,7 @@
 
 namespace BankAccount.Domain.Shared.Data
 {
-    public interface IRepository<T> : IDisposable where T : Entity
+    public interface IRepository<T> where T: Entity
     {
         IUnitOfWork UnitOfWork { get; }
     }

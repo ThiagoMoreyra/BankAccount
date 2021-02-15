@@ -26,7 +26,6 @@ namespace BankAccount.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    IdAccount = table.Column<Guid>(nullable: false),
                     FirstName = table.Column<string>(type: "VARCHAR(100)", nullable: true),
                     LastName = table.Column<string>(type: "VARCHAR(100)", nullable: true),
                     BirthDay = table.Column<DateTime>(type: "datetime", nullable: false),

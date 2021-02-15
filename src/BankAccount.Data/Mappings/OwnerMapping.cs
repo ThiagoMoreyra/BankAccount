@@ -1,4 +1,5 @@
-﻿using BankAccount.Domain.Clients;
+﻿using BankAccount.Domain.Accounts;
+using BankAccount.Domain.Clients;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,7 +16,8 @@ namespace BankAccount.Data.Mappings
                 .HasColumnType("datetime");
 
             builder.HasOne(p => p.Account)
-               .WithOne(p => p.Owner);               
+               .WithOne(p => p.Owner)
+               .HasForeignKey<Account>(p => p.IdOwner);               
 
             builder.OwnsOne(p => p.Name, c =>
             {
@@ -30,7 +32,7 @@ namespace BankAccount.Data.Mappings
 
             builder.OwnsOne(p => p.Cpf, c =>
             {
-                c.Property(c => c.Number)
+                c.Property(c => c.Document)
                     .HasColumnName("Cpf")
                     .HasColumnType("VARCHAR(100)");
             });

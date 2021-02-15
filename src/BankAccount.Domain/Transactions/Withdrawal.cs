@@ -11,7 +11,7 @@ namespace BankAccount.Domain.Transactions
 
         public int Execute()
         {
-            return Bank.Debit(Account.Id, this.Amount);
+            return Bank.Debit(Account, this.Amount);
         }
     }
 }

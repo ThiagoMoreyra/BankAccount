@@ -2,6 +2,7 @@
 using BankAccount.Application.ViewModels;
 using BankAccount.Domain.Clients;
 using BankAccount.Domain.Owners;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.RegisterOwner
 {

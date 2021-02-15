@@ -1,4 +1,5 @@
 ﻿using BankAccount.Domain.Clients;
+using System.Threading.Tasks;
 
 namespace BankAccount.Domain.Owners
 {
@@ -11,9 +12,11 @@ namespace BankAccount.Domain.Owners
             _ownerRepository = ownerRepository;
         }
 
-        public void RegisterOwner(Owner owner)
+        public async Task<bool> RegisterOwner(Owner owner)
         {
-            _ownerRepository.Add(owner);
+            if (owner.Invalid) return false;
+
+            return await _ownerRepository.Add(owner);
         }
     }
 }

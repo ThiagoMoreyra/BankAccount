@@ -4,6 +4,7 @@ using BankAccount.Domain.BankStatements;
 using BankAccount.Domain.BankStatements.Enum;
 using BankAccount.Domain.Transactions;
 using System;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.Deposits
 {
@@ -20,22 +21,29 @@ namespace BankAccount.Application.UseCases.Deposits
             _accountService = accountService;
         }
 
-        public void Deposit(Guid idAccount, double amount)
+        public async Task<bool> Deposit(Guid idAccount, double amount)
         {
             var account = _accountService.GetAccountById(idAccount).Result;
             var bank = _bankService.GetBankById(account.IdBank);
 
-            if (account.Valid && bank.Valid)
+            if (account.Invalid && bank.Invalid) return false;
+
+            Deposit deposit = new Deposit(amount, DateTime.Now, account, bank);
+            var insertedAccount = false;
+            var insertedBankStatement = false;
+
+            var result = deposit.Execute();
+            if (result > 0)
             {
-                Deposit deposit = new Deposit(amount, DateTime.Now, account, bank);
-                var result = deposit.Execute();
-                if (result > 0)
+                insertedAccount = await _accountService.UpdateAccount(account);
+                if (insertedAccount)
                 {
-                    _accountService.UpdateAccount(account);
                     var bankStatement = new BankStatement(TransactionType.Deposit, DateTime.Now, amount, account.Id, account.IdOwner);
-                    _bankStatementService.RegisterBankStatement(bankStatement);
+                    insertedBankStatement =  await _bankStatementService.RegisterBankStatement(bankStatement);
                 }
             }
+
+            return (insertedAccount && insertedBankStatement);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace BankAccount.Domain.Transactions
+﻿using System.Threading.Tasks;
+
+namespace BankAccount.Domain.Transactions
 {
     public class TransactionService : ITransactionService
     {
@@ -9,9 +11,11 @@
             _transactionRepository = transactionRepository;
         }
 
-        public void RegisterTransaction(Transaction transaction)
+        public async Task<bool> RegisterTransaction(Transaction transaction)
         {
-            _transactionRepository.Add(transaction);
+            if (transaction.Invalid) return false;
+
+            return await _transactionRepository.Add(transaction);
         }
     }
 }

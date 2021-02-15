@@ -17,12 +17,12 @@ namespace BankAccount.Domain.Banks
             this.AuthenticatedUser = true;
             Accounts = new List<Account>();
             Transactions = new List<Transaction>();
-            
+
 
             AddNotifications(new Contract()
                             .Requires()
-                            .ValidateMinMax(this.BankCode, 5, 10, "The BankCode field is invalid")
-                            .ValidateIfLessThan(this.BankCode, 4, "The BankCode field is invalid")
+                            .ValidateMinMax(this.BankCode, 0, 9999, "The BankCode field is invalid")
+                            .ValidateIfLessThan(this.BankCode, 0, "The BankCode field is invalid")
                             .ValidateIfNull(this.CompanyName, "The CompanyName field can't be null")
                             .ValidateIfEmpty(this.CompanyName, "The CompanyName field can't be empty"));
         }
@@ -42,12 +42,11 @@ namespace BankAccount.Domain.Banks
             return account.MakeDeposit(amount);
         }
 
-        public int Debit(Guid accountId, double amount)
+        public int Debit(Account account, double amount)
         {
             if (!UserIsAuthenticated())
                 return 0;
 
-            var account = GetAccount(accountId);
             return account.MakeWithdraw(amount);
         }
 

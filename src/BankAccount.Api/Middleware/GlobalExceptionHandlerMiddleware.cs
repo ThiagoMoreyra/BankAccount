@@ -38,7 +38,7 @@ namespace BankAccount.Api.Middleware
             {
                 context.Response.StatusCode,
                 Message = "An error occurred whilst processing your request",
-                Detailed = exception
+                Detailed = exception.Message
             };
 
             return context.Response.WriteAsync(JsonConvert.SerializeObject(json));

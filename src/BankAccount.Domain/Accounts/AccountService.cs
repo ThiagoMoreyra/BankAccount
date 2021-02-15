@@ -11,9 +11,11 @@ namespace BankAccount.Domain.Accounts
             _accountRepository = accountRepository;
         }
 
-        public void RegisterAccount(Account account)
+        public async Task<bool> RegisterAccount(Account account)
         {
-            _accountRepository.Add(account);
+            if (account.Invalid) return false;
+
+            return await _accountRepository.Add(account);            
         }
 
         public decimal GetAvaliableBalance(double fee, Account account)
@@ -26,9 +28,11 @@ namespace BankAccount.Domain.Accounts
             return await _accountRepository.GetById(id);
         }
 
-        public void UpdateAccount(Account account)
+        public async Task<bool> UpdateAccount(Account account)
         {
-            _accountRepository.Update(account);
+            if (account.Invalid) return false;
+
+            return await _accountRepository.Update(account);           
         }
     }
 }

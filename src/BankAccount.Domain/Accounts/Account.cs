@@ -20,8 +20,8 @@ namespace BankAccount.Domain.Accounts
 
             AddNotifications(new Contract()
                             .Requires()
-                            .ValidateMinMax(this.BankCode, 5, 10, "The BankCode filed is invalid")
-                            .ValidateIfLessThan(this.BankCode, 4, "The BankCode filed is invalid")
+                            .ValidateMinMax(this.BankCode, 0, 999999, "The BankCode filed is invalid")
+                            .ValidateIfLessThan(this.Balance, 0, "The Balance filed is invalid")
                             .ValidateIfLessThan(this.Number, 0, "The Number filed is invalid"));
         }
 

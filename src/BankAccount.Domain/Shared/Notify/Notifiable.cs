@@ -3,13 +3,14 @@ using System.Linq;
 
 namespace BankAccount.Domain.Shared.Notify
 {
-    public abstract class Notifiable: INotifiable
+    public class Notifiable: INotifiable
     {
         private readonly List<Notification> _notifications;
-        protected Notifiable() => _notifications = new List<Notification>();
-        public IReadOnlyCollection<Notification> Notifications => _notifications;
+        public Notifiable() => _notifications = new List<Notification>();
+        public IReadOnlyCollection<Notification> Notifications => _notifications;    
+        
 
-        public void AddNotification(string property, string message)
+        public void AddNotification(string message)
         {
             _notifications.Add(new Notification(message));
         }

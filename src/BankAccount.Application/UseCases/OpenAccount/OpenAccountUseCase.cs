@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BankAccount.Application.ViewModels;
 using BankAccount.Domain.Accounts;
+using System.Threading.Tasks;
 
 namespace BankAccount.Application.UseCases.Accounts
 {
@@ -15,10 +16,10 @@ namespace BankAccount.Application.UseCases.Accounts
             _mapper = mapper;
         }
 
-        public void RegisterAccount(AccountViewModel accountViewModel)
+        public async Task<bool> RegisterAccount(AccountViewModel accountViewModel)
         {
             var account = _mapper.Map<Account>(accountViewModel);
-            _accountService.RegisterAccount(account);
+            return await _accountService.RegisterAccount(account);
         }
     }
 }

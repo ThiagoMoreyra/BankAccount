@@ -14,7 +14,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (object1.Equals(object2))
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -24,7 +24,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (!object1.Equals(object2))
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -36,7 +36,7 @@ namespace BankAccount.Domain.Shared.Validations
 
             if (!regex.IsMatch(valor))
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -47,7 +47,7 @@ namespace BankAccount.Domain.Shared.Validations
             var length = valor.Trim().Length;
             if (length > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -58,7 +58,7 @@ namespace BankAccount.Domain.Shared.Validations
             var length = valor.Trim().Length;
             if (length < minimo || length > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -68,7 +68,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor == null || valor.Trim().Length == 0)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -78,7 +78,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (object1 == null)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -88,7 +88,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo || valor > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
             return this;
         }
@@ -97,7 +97,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo || valor > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -107,7 +107,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo || valor > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -117,7 +117,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo || valor > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -127,7 +127,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo || valor > maximo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -137,7 +137,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -147,7 +147,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -157,7 +157,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -167,7 +167,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (valor < minimo)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -177,7 +177,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (!boolvalor)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;
@@ -187,7 +187,7 @@ namespace BankAccount.Domain.Shared.Validations
         {
             if (boolvalor)
             {
-                AddNotification("", "");
+                AddNotification(message);
             }
 
             return this;

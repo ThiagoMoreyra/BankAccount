@@ -6,6 +6,7 @@ using BankAccount.Application.UseCases.Pays;
 using BankAccount.Application.UseCases.RegisterBankStatement;
 using BankAccount.Application.UseCases.RegisterOwner;
 using BankAccount.Application.UseCases.Withdrawals;
+using BankAccount.Data.Context;
 using BankAccount.Data.Repositories;
 using BankAccount.Domain.Accounts;
 using BankAccount.Domain.Banks;
@@ -27,6 +28,8 @@ namespace BankAccount.Api.Configuration
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddScoped<BankAccountContext>();
+
             //Services
             services.AddScoped<IBankService, BankService>();
             services.AddScoped<IAccountService, AccountService>();
@@ -40,6 +43,7 @@ namespace BankAccount.Api.Configuration
             services.AddScoped<IOwnerRepository, OwnerRepository>();
             services.AddScoped<IBankStatementRepository, BankStatementRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            
 
             //UseCase
             services.AddScoped<IDepositUseCase, DepositUseCase>();

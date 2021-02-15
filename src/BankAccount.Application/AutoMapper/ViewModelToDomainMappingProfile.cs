@@ -17,7 +17,7 @@ namespace BankAccount.Application.AutoMapper
 
             CreateMap<OwnerViewModel, Owner>()
                 .ConstructUsing(p => new Owner(
-                        new Name(p.FirstName, p.LastName), p.BirthDay, new Cpf(p.Cpf), new Address(p.Street, p.Number, p.Neighborhood, p.City, p.State, p.Country, p.ZipCode)));
+                        new Name(p.FirstName, p.LastName), p.BirthDay, new Cpf(p.Document), new Address(p.Street, p.Number, p.Neighborhood, p.City, p.State, p.Country, p.ZipCode))).ReverseMap();
 
             CreateMap<TransactionViewModel, Transaction>();            
         }

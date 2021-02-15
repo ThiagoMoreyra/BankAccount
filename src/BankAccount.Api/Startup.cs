@@ -1,5 +1,6 @@
 using BankAccount.Api.Configuration;
 using BankAccount.Api.Middleware;
+using BankAccount.Application.AutoMapper;
 using BankAccount.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,12 +34,23 @@ namespace BankAccount.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BankAccountContext>(options =>
-                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
+                opt => 
+                {
+                    opt.EnableRetryOnFailure();
+                })
             );
 
             services.AddGlobalExceptionHandlerMiddleware();
 
             services.InjectionConfigurationServices();
+
+            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Api - Controle de Conta Corrente", Version = "v1" });
+            });
 
             services.AddControllers();
         }
@@ -51,6 +63,12 @@ namespace BankAccount.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
 
             app.UseRouting();
 

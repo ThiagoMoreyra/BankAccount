@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BankAccount.Domain.Accounts;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace BankAccount.Application.ViewModels
@@ -18,7 +19,7 @@ namespace BankAccount.Application.ViewModels
         public DateTime BirthDay { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
-        public string Cpf { get; set; }
+        public string Document { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
         public string Street { get; set; }
@@ -39,6 +40,7 @@ namespace BankAccount.Application.ViewModels
         public string Country { get; set; }
 
         [Required(ErrorMessage = "The field {0} is required")]
-        public string ZipCode { get; set; }
+        public string ZipCode { get; set; }       
+        
     }
 }

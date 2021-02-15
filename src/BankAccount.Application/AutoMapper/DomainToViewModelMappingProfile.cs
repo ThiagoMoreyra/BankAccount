@@ -22,11 +22,11 @@ namespace BankAccount.Application.AutoMapper
                     .ForMember(d => d.ZipCode, o => o.MapFrom(s => s.Address.ZipCode))
                     .ForMember(d => d.State, o => o.MapFrom(s => s.Address.State))
                     .ForMember(d => d.Street, o => o.MapFrom(s => s.Address.Street))
-                    .ForMember(d => d.Cpf, o => o.MapFrom(s => s.Cpf.Number))
+                    .ForMember(d => d.Document, o => o.MapFrom(s => s.Cpf.Document))
                     .ForMember(d => d.FirstName, o => o.MapFrom(s => s.Name.FirstName))
-                    .ForMember(d => d.LastName, o => o.MapFrom(s => s.Name.LastName));
+                    .ForMember(d => d.LastName, o => o.MapFrom(s => s.Name.LastName)).ReverseMap();
 
-            CreateMap<Transaction, TransactionViewModel>();            
+            CreateMap<Transaction, TransactionViewModel>();
         }
     }
 }

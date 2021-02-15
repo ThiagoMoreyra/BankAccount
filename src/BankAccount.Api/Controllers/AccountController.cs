@@ -29,9 +29,8 @@ namespace BankAccount.Api.Controllers
         [ValidateModel]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] AccountViewModel accountViewModel)
-        {
-            _accountUseCase.RegisterAccount(accountViewModel);
-            return CustomResponse(accountViewModel);
+        {            
+            return CustomResponse(await _accountUseCase.RegisterAccount(accountViewModel));
         }
 
         [ValidateModel]
