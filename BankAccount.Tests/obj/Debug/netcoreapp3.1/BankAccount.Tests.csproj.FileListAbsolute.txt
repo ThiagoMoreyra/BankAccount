@@ -97,3 +97,8 @@ C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\obj\Debug\netcoreapp3.1\Ba
 C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\obj\Debug\netcoreapp3.1\BankAccount.Tests.dll
 C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\obj\Debug\netcoreapp3.1\BankAccount.Tests.pdb
 C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\obj\Debug\netcoreapp3.1\BankAccount.Tests.genruntimeconfig.cache
+C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\bin\Debug\netcoreapp3.1\Moq.dll
+C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\bin\Debug\netcoreapp3.1\BankAccount.Application.dll
+C:\repo\BankAccount\BankAccount.App\BankAccount.Tests\bin\Debug\netcoreapp3.1\BankAccount.Application.pdb
