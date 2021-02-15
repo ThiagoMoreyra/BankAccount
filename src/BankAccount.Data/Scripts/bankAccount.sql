@@ -9,7 +9,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE TABLE `tbBank` (
         `Id` char(36) NOT NULL,
@@ -30,7 +30,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE TABLE `tbOwner` (
         `Id` char(36) NOT NULL,
@@ -59,7 +59,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE TABLE `tbAccount` (
         `Id` char(36) NOT NULL,
@@ -85,15 +85,16 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE TABLE `tbBankStatement` (
         `Id` char(36) NOT NULL,
         `IdAccount` char(36) NOT NULL,
         `IdOwner` char(36) NOT NULL,
-        `TransactionType` int NOT NULL,
-        `TransactionDate` date NOT NULL,
+        `TransactionType` varchar(20) NOT NULL,
+        `TransactionDate` datetime NOT NULL,
         `Amount` decimal NOT NULL,
+        `AvaliableBalance` decimal NOT NULL,
         `AccountId` char(36) NULL,
         `OwnerId` char(36) NULL,
         CONSTRAINT `PK_tbBankStatement` PRIMARY KEY (`Id`),
@@ -112,14 +113,14 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE TABLE `tbTransaction` (
         `Id` char(36) NOT NULL,
         `IdAccount` binary(32) NOT NULL,
         `IdBank` binary(32) NOT NULL,
         `Amount` decimal NOT NULL,
-        `MovDate` date NOT NULL,
+        `MovDate` datetime NOT NULL,
         `BankId` char(36) NULL,
         CONSTRAINT `PK_tbTransaction` PRIMARY KEY (`Id`),
         CONSTRAINT `FK_tbTransaction_tbBank_BankId` FOREIGN KEY (`BankId`) REFERENCES `tbBank` (`Id`) ON DELETE RESTRICT,
@@ -137,7 +138,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE INDEX `IX_tbAccount_IdBank` ON `tbAccount` (`IdBank`);
 
@@ -152,7 +153,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE UNIQUE INDEX `IX_tbAccount_IdOwner` ON `tbAccount` (`IdOwner`);
 
@@ -167,7 +168,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE INDEX `IX_tbBankStatement_AccountId` ON `tbBankStatement` (`AccountId`);
 
@@ -182,7 +183,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE INDEX `IX_tbBankStatement_OwnerId` ON `tbBankStatement` (`OwnerId`);
 
@@ -197,7 +198,7 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     CREATE INDEX `IX_tbTransaction_BankId` ON `tbTransaction` (`BankId`);
 
@@ -212,10 +213,10 @@ DROP PROCEDURE IF EXISTS MigrationsScript;
 DELIMITER //
 CREATE PROCEDURE MigrationsScript()
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210214173017_InitialCreate') THEN
+    IF NOT EXISTS(SELECT 1 FROM `__EFMigrationsHistory` WHERE `MigrationId` = '20210215052205_InitialCreate') THEN
 
     INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-    VALUES ('20210214173017_InitialCreate', '3.1.11');
+    VALUES ('20210215052205_InitialCreate', '3.1.11');
 
     END IF;
 END //
