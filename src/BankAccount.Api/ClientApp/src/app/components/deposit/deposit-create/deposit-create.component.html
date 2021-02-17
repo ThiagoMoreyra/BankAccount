@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-title>Deposit</mat-card-title>
+    <form>
+        <mat-form-field>
+            <input matInput placeholder="IdAccount" [(ngModel)]="deposit.idAccount" name="IdAccount">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Amount (R$)" [(ngModel)]="deposit.amount" name="Amount">
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="makeDeposit()" color="primary">
+        Save
+    </button>
+
+    <button mat-raised-button (click)="cancel()" color="primary">
+        Cancel
+    </button>
+</mat-card>
