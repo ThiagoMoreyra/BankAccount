@@ -1,6 +1,6 @@
 import { BankStatementSearch } from './../bankstatement.search.model';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Guid } from 'guid-typescript';
 
 @Component({
@@ -10,16 +10,15 @@ import { Guid } from 'guid-typescript';
 })
 export class BankstatementSearchComponent implements OnInit {
 
-  bankStatementSearch: BankStatementSearch = {
-    idAccount: Guid.createEmpty()
-  }
+  bankStatementSearch: BankStatementSearch
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('idAccount');
   }
 
   searchBankStatement(): void {
-    this.router.navigate(['/bankstatementtable'])
+    this.router.navigate(['/bankstatementtable/' + this.bankStatementSearch.idAccount])
   }
 }

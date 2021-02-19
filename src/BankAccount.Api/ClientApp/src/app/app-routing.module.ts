@@ -36,7 +36,7 @@ const routes: Routes = [{
   component: BankstatementSearchComponent
 },
 {
-  path: "bankstatementtable",
+  path: "bankstatementtable/:idAccount",
   component: BankstatementReadComponent
 }
 ];

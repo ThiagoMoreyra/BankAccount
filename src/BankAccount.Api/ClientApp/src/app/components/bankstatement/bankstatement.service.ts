@@ -1,3 +1,4 @@
+import { Guid } from 'guid-typescript';
 import { BankStatement } from './bankstatement.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -21,7 +22,8 @@ export class BankstatementService {
     })
   }
 
-  read(): Observable<BankStatement[]> {
-    return this.http.get<BankStatement[]>(this.baseUrl)
+  read(idAccount: Guid): Observable<BankStatement[]> {
+    const url = `${this.baseUrl}/${Guid}`
+    return this.http.get<BankStatement[]>(url)
   }
 }
