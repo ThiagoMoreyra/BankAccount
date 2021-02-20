@@ -1,9 +1,0 @@
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\obj\Debug\netcoreapp3.1\BankAccount.Domain.csprojAssemblyReference.cache
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\obj\Debug\netcoreapp3.1\BankAccount.Domain.AssemblyInfoInputs.cache
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\obj\Debug\netcoreapp3.1\BankAccount.Domain.AssemblyInfo.cs
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\obj\Debug\netcoreapp3.1\BankAccount.Domain.csproj.CoreCompileInputs.cache
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\bin\Debug\netcoreapp3.1\BankAccount.Domain.deps.json
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\bin\Debug\netcoreapp3.1\BankAccount.Domain.dll
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\bin\Debug\netcoreapp3.1\BankAccount.Domain.pdb
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\obj\Debug\netcoreapp3.1\BankAccount.Domain.dll
-C:\repo\BankAccount\BankAccount.App\src\BankAccount.Domain\obj\Debug\netcoreapp3.1\BankAccount.Domain.pdb
