@@ -1,7 +1,7 @@
 ﻿using BankAccount.Domain.Clients;
 using System.Threading.Tasks;
 
-namespace BankAccount.Domain.Owners
+namespace BankAccount.Domain.Owners.Services
 {
     public class OwnerService : IOwnerService
     {

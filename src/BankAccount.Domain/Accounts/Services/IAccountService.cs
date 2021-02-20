@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace BankAccount.Domain.Accounts
+namespace BankAccount.Domain.Accounts.Services
 {
     public interface IAccountService
     {

@@ -1,7 +1,10 @@
 ﻿using BankAccount.Domain.Accounts;
+using BankAccount.Domain.Accounts.Services;
 using BankAccount.Domain.Banks;
+using BankAccount.Domain.Banks.Services;
 using BankAccount.Domain.BankStatements;
 using BankAccount.Domain.BankStatements.Enum;
+using BankAccount.Domain.BankStatements.Services;
 using BankAccount.Domain.Shared.Notify;
 using BankAccount.Domain.Transactions;
 using System;

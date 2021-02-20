@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BankAccount.Domain.Transactions
+namespace BankAccount.Domain.Transactions.Services
 {
     public class TransactionService : ITransactionService
     {

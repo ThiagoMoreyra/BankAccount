@@ -2,6 +2,7 @@
 using BankAccount.Application.ViewModels;
 using BankAccount.Domain.Clients;
 using BankAccount.Domain.Owners;
+using BankAccount.Domain.Owners.Services;
 using BankAccount.Domain.Shared.Notify;
 using System.Threading.Tasks;
 

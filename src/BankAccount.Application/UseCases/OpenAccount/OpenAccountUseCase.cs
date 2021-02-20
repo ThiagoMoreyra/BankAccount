@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BankAccount.Application.ViewModels;
 using BankAccount.Domain.Accounts;
+using BankAccount.Domain.Accounts.Services;
 using BankAccount.Domain.Shared.Notify;
 using System.Threading.Tasks;
 

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BankAccount.Domain.BankStatements
+namespace BankAccount.Domain.BankStatements.Services
 {
     public interface IBankStatementService
     {

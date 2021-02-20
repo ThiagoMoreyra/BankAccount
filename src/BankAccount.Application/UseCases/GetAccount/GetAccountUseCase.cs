@@ -1,4 +1,5 @@
 ﻿using BankAccount.Domain.Accounts;
+using BankAccount.Domain.Accounts.Services;
 using System;
 
 namespace BankAccount.Application.UseCases.GetAccount
